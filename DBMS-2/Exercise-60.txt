@@ -1,0 +1,3 @@
+SELECT Sname FROM
+Salesman WHERE sid IN 
+(SELECT sid FROM Sale GROUP BY sid HAVING COUNT(*) >1);

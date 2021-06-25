@@ -1,0 +1,9 @@
+SELECT p.prodid,p.Pdesc FROM 
+Product p LEFT JOIN Saledetail s
+ON p.prodid = s.prodid
+GROUP BY p.Prodid,p.Pdesc
+HAVING SUM(s.Quantity) = 
+(SELECT MIN(SUM(Quantity)) FROM 
+Product p LEFT JOIN Saledetail s
+ON p.prodid = s.prodid
+GROUP BY p.Prodid,p.Pdesc);

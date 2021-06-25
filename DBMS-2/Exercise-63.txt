@@ -1,0 +1,14 @@
+// USING CORRELATED SUBQUERY
+
+SELECT p1.Prodid, p1.Category, p1.Pdesc,p1.Price
+FROM Product p1 WHERE p1.Price = 
+(SELECT MAX(p2.Price) FROM Product p2 WHERE p1.Category = p2.Category);
+
+
+// USING JOINS
+
+SELECT p1.Prodid, p1.Category, p1.Pdesc,p1.Price
+FROM Product p1 INNER JOIN 
+(SELECT Category,MAX(Price) MAX_PRICE FROM Product GROUP BY Category) p2
+ON p1.Category = p2.Category
+WHERE p1.Price = p2.MAX_PRICE;
