@@ -1,0 +1,3 @@
+SELECT Sname FROM Salesman sm
+WHERE NOT EXISTS
+(Select 1 From Sale s WHERE sm.Sid =s.sid);

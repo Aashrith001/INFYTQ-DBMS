@@ -1,0 +1,20 @@
+SELECT sm.Sid,sm.Sname,sm.location
+FROM
+Saledetail sd INNER JOIN Product p
+ON p.prodid = sd.prodid
+INNER JOIN Sale s
+ON sd.Saleid = s.Saleid
+INNER JOIN Salesman sm
+ON s.Sid = sm.sid
+GROUP BY sm.Sid,sm.Sname,sm.Location
+HAVING SUM(sd.Quantity*p.price*(100-p.Discount)/100) >
+(SELECT 
+AVG(SUM(sd.Quantity*p.price*(100-p.Discount)/100))
+FROM Saledetail sd INNER JOIN Product p
+ON p.prodid = sd.prodid
+INNER JOIN Sale s
+ON sd.Saleid = s.Saleid
+INNER JOIN Salesman sm1
+ON s.Sid = sm1.sid 
+WHERE sm1.location = 'London'
+GROUP BY sm1.location,sm1.sid);

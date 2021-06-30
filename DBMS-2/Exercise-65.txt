@@ -1,0 +1,3 @@
+SELECT sm.sname FROM
+Salesman sm INNER JOIN Sale s ON sm.sid = s.sid
+WHERE EXISTS (SELECT 1 FROM Sale s1 WHERE sm.sid = s1.sid) AND TO_CHAR(Sldate,'MM/YYYY') = '06/2015';
