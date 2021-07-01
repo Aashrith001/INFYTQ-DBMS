@@ -1,0 +1,5 @@
+SELECT Itemcode,Itemtype,Descr,Category
+FROM ITEM I WHERE EXISTS
+(SELECT 1 FROM Retailstock r WHERE r.Itemcode = 
+I.Itemcode) AND EXISTS
+(SELECT 1 FROM Purchasebill p WHERE p.Itemcode = I.Itemcode);

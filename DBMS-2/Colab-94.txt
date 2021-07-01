@@ -1,0 +1,7 @@
+SELECT DISTINCT I.Itemcode,I.Itemtype,I.Descr,I.Category
+FROM Item I INNER JOIN Quotation q ON
+I.Itemcode = q.Itemcode WHERE q.Qstatus = 'Rejected'
+AND q.Quotedprice = 
+(SELECT MIN(q.Quotedprice) FROM Item I 
+INNER JOIN Quotation q ON
+I.Itemcode = q.Itemcode WHERE q.Qstatus = 'Rejected'); 

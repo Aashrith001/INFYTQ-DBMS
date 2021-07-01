@@ -14,7 +14,6 @@ FROM Saledetail sd INNER JOIN Product p
 ON p.prodid = sd.prodid
 INNER JOIN Sale s
 ON sd.Saleid = s.Saleid
-INNER JOIN Salesman sm1
-ON s.Sid = sm1.sid 
-WHERE sm1.location = sm.location
-GROUP BY sm1.location,sm1.sid);
+INNER JOIN Salesman sm
+ON s.Sid = sm.sid
+GROUP BY s.Saleid);
