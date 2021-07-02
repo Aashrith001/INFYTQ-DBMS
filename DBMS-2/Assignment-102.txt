@@ -1,0 +1,4 @@
+SELECT I.Itemcode,I.descr,q.Qdate
+FROM Quotation q INNER JOIN 
+Item I ON q.Itemcode = I.Itemcode WHERE q.Quotedprice <
+(SELECT MAX(Quotedprice) FROM Quotation WHERE q.Qdate = Qdate);

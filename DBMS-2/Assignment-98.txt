@@ -1,0 +1,2 @@
+SELECT e.Ename,e.Job FROM Emp e WHERE EXISTS
+(SELECT 1 FROM Empvehicle ev WHERE ev.Empno = e.Empno);

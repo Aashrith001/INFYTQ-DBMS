@@ -1,0 +1,20 @@
+// Method - 1
+SELECT I.Itemcode,I.descr FROM
+Quotation q INNER JOIN Item I  ON
+q.Itemcode = I.Itemcode 
+WHERE q.Quotedprice =
+(SELECT MAX(Quotedprice) FROM
+Quotation WHERE Qstatus IN ('Closed','Rejected'));
+
+
+//Method - 2
+
+SELECT I.Itemcode,I.descr FROM
+Quotation q INNER JOIN Item I  ON
+q.Itemcode = I.Itemcode 
+WHERE q.Quotedprice = 
+(SELECT MAX(MAX(q.Quotedprice)) FROM
+Quotation q INNER JOIN Item I ON
+q.Itemcode = I.Itemcode 
+GROUP BY q.Qstatus
+HAVING q.Qstatus IN ('Closed','Rejected'));
